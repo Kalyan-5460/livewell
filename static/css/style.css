@@ -1,187 +1,175 @@
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+:root{
+  --radius: 20px;
+  --shadow: 0 15px 40px rgba(0,0,0,0.06);
+  --glass: rgba(255,255,255,0.75);
+  --text: #1f2937;
+  --muted: rgba(31,41,55,0.65);
+  --primary: #2f80ed;
+  --success: #25c26e;
 }
 
+/* Background */
 body {
-  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
-  background: rgb(195, 215, 171);
-  color: #79ae8c;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto;
   min-height: 100vh;
+  margin: 0;
+
+  background:
+    radial-gradient(circle at 10% 20%, rgba(46, 204, 113, 0.15), transparent 30%),
+    radial-gradient(circle at 90% 80%, rgba(52, 152, 219, 0.18), transparent 30%),
+    linear-gradient(135deg, #eef5ec, #e8f1f5);
+
+  color: var(--text);
 }
 
+/* Sticky Navbar */
 nav.navbar {
-  background: lightblue;
-  border-bottom: 1px solid #dbdbdb;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(255,255,255,0.8);
+  padding: 14px 30px;
 }
 
-.navbar-brand {
-  font-family: Arial Black, Impact,sans-serif;
-  font-size: 2.5rem;
-  color: #262626 !important;
-  letter-spacing: 1px;
-  text-align: center;
+/* Navbar Logo */
+.nav-logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 6px;
+  opacity: 0.9;
 }
 
+/* Main spacing */
 main.container-fluid {
-  margin-top: 2rem;
+  padding: 28px 40px;
 }
 
-/* Card Styling */
+/* Cards */
 .card {
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
-  border: 1px solid #dbdbdb;
-  margin-bottom: 2rem;
-  transition: box-shadow 0.2s, border 0.2s;
+  background: var(--glass);
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,0.9);
+  box-shadow: var(--shadow);
+  margin-bottom: 22px;
+  backdrop-filter: blur(18px);
 }
-.card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-  border: 1.5px solid #b2b2b2;
-}
+
 .card-header {
-  background: lightblue;
-  border-bottom: 1px solid #dbdbdb;
-  font-weight: 600;
-  font-size: 1.1rem;
-  color: #262626;
+  font-weight: 700;
+  font-size: 1.05rem;
+  padding: 16px 18px;
+  background: transparent;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-/* Map Styling */
-#map {
-  border: 1.5px solid #dbdbdb;
-  border-radius: 16px;
-  min-height: 60vh;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
-  margin-bottom: 1.5rem;
-  background: #fff;
+.card-body {
+  padding: 20px;
 }
 
-#streetview_container {
-  border-radius: 14px;
-  border: 1px solid #dbdbdb;
-  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
-  background: #fafafa;
-}
-
-/* Sidebar & Summary */
-#summary {
-  background: blue;
-  border: 1px solid #dbdbdb;
-  border-radius: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-  padding: 1.5rem;
-}
-
-#facilities-list {
-  color:black;
-  font-size: 1rem;
-  list-style-type: none;
-  padding-left: 0;
-}
-#facilities-list .list-group-item {
-  color:black;
-  background: #fafafa;
-  margin-bottom: 10px;
-  padding: 14px 18px;
-  border-radius: 10px;
-  border: 1px solid #e6e6e6;
-  transition: background 0.2s;
-}
-#facilities-list .list-group-item:hover {
-  background: lightgrey;
-}
-
-/* Search Bar Styling */
+/* Search */
 #search-bar {
-  border-radius: 10px;
-  border: 1px solid #dbdbdb;
-  font-size: 1.1rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  margin-bottom: 1.5rem;
-  padding: 0.85rem 1.2rem;
-  background: #fff;
-  color: #262626;
-  outline: none;
-  transition: border 0.2s;
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.85);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+  font-size: 1rem;
 }
+
 #search-bar:focus {
-  border: 1.5px solid #3897f0;
+  outline: none;
+  border: 1px solid rgba(47,128,237,0.6);
+  box-shadow: 0 0 0 4px rgba(47,128,237,0.15);
 }
 
-/* Buttons */
-.btn-primary, .btn-primary:focus {
-  background: linear-gradient(90deg, #3897f0 0%, #6a11cb 100%);
+/* Map */
+#map {
+  height: calc(100vh - 210px); /* fills screen under navbar */
+  min-height: 520px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+/* ✅ Sticky map card */
+.sticky-map{
+  position: sticky;
+  top: 100px; /* below navbar */
+}
+
+/* ✅ Right side scroll container */
+.right-scroll{
+  height: calc(100vh - 140px); /* adjust based on navbar */
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+/* Lists */
+.list-group-item {
+  background: rgba(255,255,255,0.75);
   border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  color: #fff;
-  transition: background 0.2s;
-  box-shadow: 0 2px 8px rgba(56,151,240,0.08);
-}
-.btn-primary:hover {
-  background: linear-gradient(90deg, #2575fc 0%, #6a11cb 100%);
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  padding: 14px 16px;
 }
 
-/* Typography */
-h5, .card-header {
-  letter-spacing: 0.5px;
+.list-group-item:last-child { border-bottom: none; }
+
+.list-group-item.active {
+  background: rgba(255,255,255,0.9) !important;
+  font-weight: 700;
+  color: var(--text) !important;
 }
 
-/* Badge Styling */
+.list-group-item-info {
+  background: rgba(47,128,237,0.15) !important;
+  border-left: 4px solid rgba(47,128,237,0.6);
+  font-weight: 700;
+}
+
+/* Suggestions */
+.suggestion-item {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.05);
+  transition: all 0.25s ease;
+}
+
+.suggestion-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 22px rgba(0,0,0,0.08);
+}
+
+/* Badges */
 .badge {
   padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.bg-success { background-color: var(--success) !important; }
+.bg-info { background-color: var(--primary) !important; }
+
+.small-muted { color: var(--muted); }
+
+/* Google Places dropdown fix */
+.pac-container {
+  z-index: 99999 !important;
   border-radius: 14px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  background: #fafafa;
-  color: #262626;
-  border: 1px solid #dbdbdb;
-}
-.bg-success {
-  background-color: #51cb7c !important;
-  color: #fff !important;
-  border: none;
-}
-.bg-info {
-  background-color: #3897f0 !important;
-  color: #fff !important;
-  border: none;
-}
-.text-danger {
-  color: #ed4956 !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
 }
 
-/* Responsive Tweaks */
-@media (max-width: 991px) {
-  #map { min-height: 40vh; }
-  #streetview_container { height: 200px; }
+/* Responsive (mobile) */
+@media (max-width: 991px){
+  .sticky-map{ position: static; }
+  #map { height: 420px; min-height: 420px; }
+  .right-scroll{ height: auto; overflow: visible; padding-right: 0; }
 }
-@media (max-width: 767px) {
-  main.container-fluid { margin-top: 1rem; }
-  #map { min-height: 30vh; }
-  #summary { padding: 1rem; }
-}
-
-.livability-summary {
-  background-color: #e7f3ff; /* Light blue background, customize as needed */
-  border-radius: 10px;
-  padding: 1rem;
-}
-
-.team-name {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #262626;
-}
-
-small {
-  font-size: 0.9rem;
-  color: #555;
-}
-
