@@ -7,9 +7,17 @@ import difflib
 app = Flask(__name__)
 
 # ---------------- CONFIG ----------------
-app.config['GOOGLE_MAPS_API_KEY'] = "AIzaSyBEDZYrAqbXLIMh4z-HsyI9YyRI0QRAj3Q"
-app.config['OPENWEATHER_API_KEY'] = "cfe48a7245126131a4ac309b754d03fa"
+import os
 
+app.config['GOOGLE_MAPS_API_KEY'] = os.environ.get(
+    "GOOGLE_MAPS_API_KEY",
+    "YOUR_LOCAL_GOOGLE_MAPS_KEY"
+)
+
+app.config['OPENWEATHER_API_KEY'] = os.environ.get(
+    "OPENWEATHER_API_KEY",
+    "YOUR_LOCAL_OPENWEATHER_KEY"
+)
 # ---------------- ML LOAD (ON STARTUP) ----------------
 # Make sure these files are in the SAME folder as app.py:
 # - final_dataset.csv
