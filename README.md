@@ -1,16 +1,24 @@
 # 🌍 LivWell – Smart Livability Index
 
-LivWell is an AI-powered web application that predicts whether a location is suitable for living using environmental data, nearby facilities, and machine learning.
+LivWell is an AI-powered web application that predicts whether a location is suitable for living using environmental data, nearby facilities, machine learning, and recommendations for better nearby areas.
+
+It is designed for **citizens**, **urban planners**, and **hackathon-level smart city decision systems**.
 
 ---
 
 ## 🚀 Features
-- 📍 Interactive Google Maps Integration
-- 🌫️ Real-time Air Quality Index (OpenWeather API)
-- 🏥 Nearby Facilities (Google Places API)
-- 🤖 Machine Learning-based Livability Prediction
-- 📊 City-level Environmental & Infrastructure Analysis
-- 🖥️ Clean and Modern User Interface
+
+- 📍 **Interactive Google Maps Integration** (Click / Search places)
+- 🔎 **Autocomplete Place Search** (Google Places Autocomplete)
+- 🌫️ **Real-time Air Quality Index (AQI)** using OpenWeather API
+- 🏥 **Nearby Facilities** (Hospitals, Schools, Stores using Google Places API)
+- 🤖 **Machine Learning Livability Prediction** (Random Forest)
+- 📊 **City-level Environmental & Infrastructure Analysis**
+- 🌟 **Nearby Good Areas Recommendation**
+  - Suggests nearby locations within the same state that are predicted as more livable
+- ✨ **Apple-like Glassmorphism UI**
+  - Frosted glass cards + smooth gradients + premium modern look
+- 🖥️ Responsive Layout (Fixed map + scrollable insights panel)
 
 ---
 
@@ -19,28 +27,38 @@ LivWell is an AI-powered web application that predicts whether a location is sui
 - Python (Flask)
 - Scikit-learn (Random Forest Classifier)
 - Pandas & NumPy
-- Google Maps API
-- OpenWeather API
+- Google Maps API (Maps + Places + Autocomplete)
+- OpenWeather API (AQI)
 - HTML, CSS, JavaScript, Bootstrap
 
 ---
 
 ## 📂 Project Structure
 
-```
+
 livewell/
 │
 ├── app.py
 ├── model.pkl
 ├── final_dataset.csv
 ├── requirements.txt
+├── Procfile
+├── README.md
+├── .gitignore
+│
 ├── templates/
-│   └── index.html
-├── static/
-│   ├── css/
-│   ├── js/
-│   └── assets/
-```
+│ ├── layout.html
+│ └── index.html
+│
+└── static/
+├── css/
+│ └── style.css
+├── js/
+│ ├── map.js
+│ └── streetview.js
+└── assets/
+└── livwelllogo.png
+
 
 ---
 
@@ -55,105 +73,67 @@ Follow these steps carefully:
 ```bash
 git clone https://github.com/YOUR_USERNAME/livewell.git
 cd livewell
-```
-
----
-
-## 2️⃣ Create Virtual Environment
-
-```bash
+2️⃣ Create Virtual Environment
 python -m venv venv
-```
 
-This will create a folder called `venv`.
+This creates a folder called venv.
 
----
-
-## 3️⃣ Activate Virtual Environment
-
-### 🪟 Windows:
-```bash
-venv\Scripts\activate
-```
-
-### 🍎 Mac/Linux:
-```bash
+3️⃣ Activate Virtual Environment
+🪟 Windows (PowerShell):
+venv\Scripts\Activate.ps1
+🪟 Windows (CMD):
+venv\Scripts\activate.bat
+🍎 Mac/Linux:
 source venv/bin/activate
-```
 
-After activation, you should see:
+After activation, you should see (venv) in your terminal.
 
-```
-(venv)
-```
-
-in your terminal.
-
----
-
-## 4️⃣ Install Required Libraries
-
-```bash
+4️⃣ Install Required Libraries
 pip install -r requirements.txt
-```
+5️⃣ Add API Keys (Environment Variables ✅ Recommended)
+🪟 Windows PowerShell
+$env:GOOGLE_MAPS_API_KEY="YOUR_KEY"
+$env:OPENWEATHER_API_KEY="YOUR_KEY"
+🍎 Mac/Linux
+export GOOGLE_MAPS_API_KEY="YOUR_KEY"
+export OPENWEATHER_API_KEY="YOUR_KEY"
 
-This installs all necessary dependencies.
+✅ This keeps your keys safe and avoids uploading them to GitHub.
 
----
-
-## 5️⃣ Add API Keys
-
-Open `app.py` and replace:
-
-```python
-app.config['GOOGLE_MAPS_API_KEY'] = "YOUR_GOOGLE_MAPS_API_KEY"
-app.config['OPENWEATHER_API_KEY'] = "YOUR_OPENWEATHER_API_KEY"
-```
-
-With your actual API keys.
-
----
-
-## 6️⃣ Run the Application
-
-```bash
+6️⃣ Run the Application
 python app.py
-```
 
 You should see:
 
-```
 Running on http://127.0.0.1:5000
-```
-
----
-
-## 7️⃣ Open in Browser
+7️⃣ Open in Browser
 
 Open:
 
-```
 http://127.0.0.1:5000
-```
 
-Your application will be running successfully 🎉
+Your application will run successfully 🎉
 
----
+⚠️ Important Notes
 
-## ⚠️ Important Notes
+Ensure model.pkl exists in root directory.
 
-- Make sure `model.pkl` is present in the root directory.
-- Do NOT upload the `venv/` folder to GitHub.
-- API keys should ideally be stored as environment variables for production deployment.
+Do NOT upload venv/ folder to GitHub.
 
----
+API keys must be set before running.
 
-## 👨‍💻 Developed By
+Nearby Good Areas are based on dataset/model predictions (recommended areas may differ from real-time AQI facilities).
 
-**Team Viveka**  
-G.Ritvik
-M.sarvagna
-K.laxmi lavanya
+👨‍💻 Developed By
+
+Team Viveka
+
+G. Ritvik
+
+M. Sarvagna
+
+K. Laxmi Lavanya
+
 M.K.V.Vinay
 
 National Level Hackathon Project
