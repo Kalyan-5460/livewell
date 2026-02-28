@@ -28,10 +28,55 @@ nav.navbar {
   top: 0;
   z-index: 9999;
 
-  backdrop-filter: blur(14px);
-  background: rgba(255,255,255,0.75);
-  border-bottom: 1px solid rgba(255,255,255,0.8);
+  /* Apple-like frosted glass */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  /* transparent base */
+  background: rgba(255, 255, 255, 0.55);
+
+  border-bottom: 1px solid rgba(255,255,255,0.65);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+
   padding: 14px 30px;
+
+  /* needed for gradient layer */
+  overflow: hidden;
+}
+
+/* Soft animated aurora layer */
+nav.navbar::before {
+  content: "";
+  position: absolute;
+  inset: -40px;
+  z-index: -1;
+
+  /* Reversed color flow */
+  background: radial-gradient(circle at 15% 30%, rgba(241, 196, 15, 0.22), transparent 45%),
+              radial-gradient(circle at 55% 10%, rgba(155, 89, 182, 0.25), transparent 42%),
+              radial-gradient(circle at 85% 50%, rgba(52, 152, 219, 0.25), transparent 45%),
+              radial-gradient(circle at 35% 90%, rgba(46, 204, 113, 0.28), transparent 45%);
+
+  filter: blur(22px);
+  opacity: 0.95;
+
+  animation: navAurora 10s ease-in-out infinite alternate;
+}
+
+/* Subtle movement */
+@keyframes navAurora {
+  0%   { transform: translate3d(-20px, -10px, 0) scale(1.05); }
+  50%  { transform: translate3d(15px, 10px, 0) scale(1.10); }
+  100% { transform: translate3d(-10px, 15px, 0) scale(1.06); }
+}
+
+nav.navbar * {
+  position: relative;
+  z-index: 2;
+}
+
+nav.navbar {
+  border-bottom: 1px solid rgba(255,255,255,0.9);
 }
 
 /* Navbar Logo */
